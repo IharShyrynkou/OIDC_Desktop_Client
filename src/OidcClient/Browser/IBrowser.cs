@@ -16,8 +16,7 @@ namespace IdentityModel.OidcClient.Browser
         /// Invokes the browser.
         /// </summary>
         /// <param name="options">The options.</param>
-        /// <param name="cancellationToken">A token that can be used to cancel the request</param>
         /// <returns></returns>
-        Task<BrowserResult> InvokeAsync(BrowserOptions options, CancellationToken cancellationToken = default);
+        BrowserResult InvokeAsync(BrowserOptions options);
     }
 }

@@ -40,7 +40,7 @@ namespace ConsoleClientWithBrowserAndDPoP
             return port;
         }
 
-        public async Task<BrowserResult> InvokeAsync(BrowserOptions options, CancellationToken cancellationToken)
+        public BrowserResult InvokeAsync(BrowserOptions options)
         {
             using (var listener = new LoopbackHttpListener(Port, _path))
             {
@@ -48,7 +48,7 @@ namespace ConsoleClientWithBrowserAndDPoP
 
                 try
                 {
-                    var result = await listener.WaitForCallbackAsync();
+                    var result = listener.WaitForCallbackAsync().GetAwaiter().GetResult();
                     if (String.IsNullOrWhiteSpace(result))
                     {
                         return new BrowserResult { ResultType = BrowserResultType.UnknownError, Error = "Empty response." };

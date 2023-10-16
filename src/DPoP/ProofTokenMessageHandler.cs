@@ -30,7 +30,7 @@ public class ProofTokenMessageHandler : DelegatingHandler
     {
         CreateProofToken(request);
 
-        var response = await base.SendAsync(request, cancellationToken);
+        var response = base.SendAsync(request, cancellationToken).GetAwaiter().GetResult();
 
         var dPoPNonce = response.GetDPoPNonce();
 

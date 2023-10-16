@@ -32,7 +32,7 @@ namespace IdentityModel.OidcClient
             _crypto = new CryptoHelper(options);
         }
 
-        public async Task<AuthorizeResult> AuthorizeAsync(AuthorizeRequest request,
+        public AuthorizeResult AuthorizeAsync(AuthorizeRequest request,
             CancellationToken cancellationToken = default)
         {
             _logger.LogTrace("AuthorizeAsync");
@@ -53,7 +53,7 @@ namespace IdentityModel.OidcClient
                 DisplayMode = request.DisplayMode
             };
 
-            var browserResult = await _options.Browser.InvokeAsync(browserOptions, cancellationToken);
+            var browserResult = _options.Browser.InvokeAsync(browserOptions);
 
             if (browserResult.ResultType == BrowserResultType.Success)
             {
@@ -65,7 +65,7 @@ namespace IdentityModel.OidcClient
             return result;
         }
 
-        public async Task<BrowserResult> EndSessionAsync(LogoutRequest request,
+        public BrowserResult EndSessionAsync(LogoutRequest request,
             CancellationToken cancellationToken = default)
         {
             var endpoint = _options.ProviderInformation.EndSessionEndpoint;
@@ -82,7 +82,7 @@ namespace IdentityModel.OidcClient
                 DisplayMode = request.BrowserDisplayMode
             };
 
-            return await _options.Browser.InvokeAsync(browserOptions, cancellationToken);
+            return _options.Browser.InvokeAsync(browserOptions);
         }
 
         public AuthorizeState CreateAuthorizeState(Parameters frontChannelParameters)

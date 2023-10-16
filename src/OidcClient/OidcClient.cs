@@ -72,7 +72,7 @@ namespace IdentityModel.OidcClient
 
             await EnsureConfigurationAsync(cancellationToken);
 
-            var authorizeResult = await _authorizeClient.AuthorizeAsync(new AuthorizeRequest
+             var authorizeResult = _authorizeClient.AuthorizeAsync(new AuthorizeRequest
             {
                 DisplayMode = request.BrowserDisplayMode,
                 Timeout = request.BrowserTimeout,
@@ -143,7 +143,7 @@ namespace IdentityModel.OidcClient
 
             await EnsureConfigurationAsync(cancellationToken);
 
-            var result = await _authorizeClient.EndSessionAsync(request, cancellationToken);
+            var result = _authorizeClient.EndSessionAsync(request, cancellationToken);
 
             if (result.ResultType != Browser.BrowserResultType.Success)
             {
