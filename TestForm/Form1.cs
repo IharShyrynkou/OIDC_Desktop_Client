@@ -52,15 +52,6 @@ namespace TestForm
         {
             while (true)
             {
-                //if (LoginButton.InvokeRequired)
-                //{
-                //    LoginButton.Invoke(CheckAuth);
-                //}
-                //else
-                //{
-                //    CheckAuth();
-                //}
-
                 CheckAuth();
                 Thread.Sleep(3);
             }
